@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking Form</title>
+    <style>
+        body {
+            font-family: cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image:url('ticket.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+        /* Add other styles if needed */
+        .container {
+            max-width: 350px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .small-button {
+            width: 20%;
+            padding: 5px;
+            background-color: silver;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .small-button-container {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><h2>Ticket Booking Form</h2></center>
+        <form id="booking-form" action="ticket.php" method="post">
+            <label for="username">Your Name:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="area">Available Areas:</label>
+            <select id="area" name="area">
+                <option value="area1">Area 1</option>
+                <option value="area2">Area 2</option>
+                <option value="area3">Area 3</option>
+            </select>
+
+            <label for="start-time">Starting Time:</label>
+            <input type="time" id="start-time" name="start-time" required><br>
+
+            <label for="end-time">Ending Time:</label>
+            <input type="time" id="end-time" name="end-time" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="num-tickets">Number of Tickets:</label>
+            <input type="number" id="num-tickets" name="num-tickets" min="1" required>
+
+            <button type="submit">Book Tickets</button><br><br>
+
+            <input type="button" value="Back!" onclick="history.back()">
+        </form>
+    </div>
+
+    <!-- Your JavaScript for validation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingForm = document.getElementById('booking-form');
+
+            bookingForm.addEventListener('submit', function(event) {
+                if (!validateForm()) {
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+
+            function validateForm() {
+                const username = document.getElementById('username').value;
+                const area = document.getElementById('area').value;
+                const startTime = document.getElementById('start-time').value;
+                const endTime = document.getElementById('end-time').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const numTickets = document.getElementById('num-tickets').value;
+
+                if (!username || !area || !startTime || !endTime || !email || !phone || !numTickets) {
+                    alert('Please fill in all fields.');
+                    return false;
+                }
+
+                if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+                    alert('Please enter a valid 10-digit phone number.');
+                    return false;
+                }
+
+                return true;
+            }
+        });
+    </script>
+</body>
+</html>

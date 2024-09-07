@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allura|Josefin+Sans">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: cursive;
+      border: 2px solid black; /* Add border to the whole page */
+    background-image: url('e2.jpg'); 
+      background-size: cover;
+      
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .wrapper {
+      margin-top: 50px;
+      padding: 0 15px;
+    }
+
+    .wrapper h1 {
+      font-family: 'Allura', cursive;
+      font-size: 42px;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #000;
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      width: auto;
+      text-align: center;
+      flex-wrap: wrap;
+      margin: -10px;
+    }
+
+    .event-box {
+      background: #fff;
+      margin: 10px;
+      padding: 15px;
+      width: calc(25% - 20px); /* Adjusted size to fit 4 boxes in a row */
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-box h3 {
+      font-size: 20px;
+      margin-top: 15px;
+    }
+
+    .event-box p {
+      color: #8e8b8b;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .event-heading {
+      background-color: red;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      font-size: 24px;
+      color: #000;
+    }
+
+    .event-heading-concert,
+    .event-heading-wedding,
+    .event-heading-birthday,
+    .event-heading-conference {
+      color: red; /* Same color for Concert, Wedding, Birthday, and Conference headings */
+    }
+
+    .event-details {
+      background-color: blue; /* Different color for event details */
+      padding: 10px;
+      border: 1px solid #ccc; /* Adding border around event details */
+      border-radius: 5px; /* Adding border radius for a softer look */
+    }
+  </style>
+  <title>Event Details</title>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Event Details</h1>
+
+    <h2 class="event-heading-concert"><center>Concert</center></h2><br><br>
+    <div class="section">
+      <div class="event-box">
+        <h3>Hall</h3>
+        <p>Our versatile hall is perfect for hosting large concerts. With state-of-the-art acoustics and ample space, it's the ideal venue to showcase music events of all kinds.</p>
+      </div>
+      <div class="event-box">
+        <h3>Classical</h3>
+        <p>For a touch of classical elegance, our venue is the perfect setting for hosting classical music concerts. The timeless ambiance complements the music beautifully.</p>
+      </div>
+      <div class="event-box">
+        <h3>Neon</h3>
+        <p>Experience the vibrancy of neon-themed events in this unique venue. The neon ambiance adds a modern and energetic touch to your event, making it truly unforgettable.</p>
+      </div>
+      <div class="event-box">
+        <h3>Aesthetic</h3>
+        <p>For events with a touch of elegance, our aesthetic venue provides a sophisticated and refined setting. Ideal for fashion shows, galas, and upscale gatherings.</p>
+      </div>
+    </div><br><br>
+
+    <h2 class="event-heading-wedding"><center>Wedding</center></h2><br><br>
+    <div class="section">
+      <div class="event-box">
+        <h3>Garden</h3>
+        <p>Celebrate your special day in our enchanting garden venue. With stunning natural surroundings and a romantic atmosphere, it's the perfect place for your dream wedding.</p>
+      </div>
+      <div class="event-box">
+        <h3>Indoor</h3>
+        <p>Our indoor venue offers an elegant and climate-controlled space for weddings. Enjoy a cozy and intimate atmosphere that's perfect for exchanging vows.</p>
+      </div>
+      <div class="event-box">
+        <h3>Banquet</h3>
+        <p>Host a lavish banquet-style wedding in our grand banquet hall. Treat your guests to a luxurious dining experience in a stunning setting.</p>
+      </div>
+    </div><br><br>
+
+    <h2 class="event-heading-birthday"><center>Birthday</center></h2><br><br>
+    <div class="section">
+      <div class="event-box">
+        <h3>Garden</h3>
+        <p>Celebrate your birthday in our lush garden venue. With beautiful outdoor surroundings and a joyful atmosphere, it's the perfect place for a memorable birthday party.</p>
+      </div>
+      <div class="event-box">
+        <h3>Indoor</h3>
+        <p>Looking for an indoor birthday celebration? Our indoor venue offers a fun and dynamic space to enjoy your special day with friends and family, rain or shine.</p>
+      </div>
+      <div class="event-box">
+        <h3>Banquet</h3>
+        <p>Host a banquet-style birthday party in our elegant hall. Create lasting memories while indulging in delicious food and surrounded by a stylish ambiance.</p>
+      </div>
+    </div><br><br>
+
+    <h2 class="event-heading-conference"><center>Conference</center></h2><br><br>
+    <div class="section">
+      <div class="event-box">
+        <h3>Indoor</h3>
+        <p>Host professional indoor conferences in our well-equipped venue. The versatile setup allows for various seating arrangements and multimedia presentations.</p>
+      </div>
+      <div class="event-box">
+        <h3>Banquet</h3>
+        <p>Organize conference banquets in our spacious banquet hall. Create a comfortable and engaging environment for networking and knowledge-sharing.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

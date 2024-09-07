@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  border: 2px solid black; /* Add border to the whole page */
+  font-family: cursive;
+  background-image: url('ed1.jpg'); 
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainImage {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.subImagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.subImage {
+  width: 25%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subImage img {
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.heading {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+</style>
+<script>
+  var subImages = [
+    [
+      { src: 'hall1.jpg', name: 'Hall', price: '30,000', rating: '4.5' },
+      { src: 'classical1.jpg', name: 'Classical', price: '45,000', rating: '4.8' },
+      { src: 'aesthetic.jpg', name: 'Aesthetic', price: '40,000', rating: '4.2' },
+      { src: 'neon.jpg', name: 'Neon', price: '30,000', rating: '4.2' }
+    ],
+    [
+      { src: 'gardenw.jpg', name: 'Garden', price: '30,000', rating: '4.5' },
+      { src: 'indoorw.jpg', name: 'Indoor', price: '45,000', rating: '4.8' },
+      { src: 'banquetw.jpg', name: 'Banquet', price: '40,000', rating: '4.2' }
+    ],
+    [
+      { src: 'gardenb.jpg', name: 'Garden', price: '30,000', rating: '4.5' },
+      { src: 'indoorb.jpg', name: 'Indoor', price: '45,000', rating: '4.8' },
+      { src: 'banquetb5.jpg', name: 'Banquet', price: '40,000', rating: '4.2' }
+    ],
+    [
+      { src: 'indoorc.jpg', name: 'Indoor', price: '45,000', rating: '4.8' },
+      { src: 'banquetc5.jpg', name: 'Banquet', price: '40,000', rating: '4.2' }
+    ]
+  ];
+
+  function showSubImages(eventType) {
+    var subImageContainer = document.getElementById('subImageContainer');
+    subImageContainer.innerHTML = '';
+
+    var heading = document.createElement('h2');
+    heading.className = 'heading';
+    heading.innerText = getEventTypeName(eventType);
+    subImageContainer.appendChild(heading);
+
+    for (var i = 0; i < subImages[eventType].length; i++) {
+      var subImage = document.createElement('div');
+      subImage.className = 'subImage';
+
+      var img = document.createElement('img');
+      img.src = subImages[eventType][i].src;
+      subImage.appendChild(img);
+
+      var caption = document.createElement('div');
+      caption.className = 'caption';
+      caption.innerHTML = `
+        <p>Name: ${subImages[eventType][i].name}</p>
+        <p>Price: ${subImages[eventType][i].price}</p>
+        <p>Rating: ${subImages[eventType][i].rating}</p>
+      `;
+      subImage.appendChild(caption);
+
+      subImageContainer.appendChild(subImage);
+    }
+  }
+  
+  function getEventTypeName(eventType) {
+    var eventTypes = ['Concert', 'Wedding', 'Birthday', 'Conference'];
+    return eventTypes[eventType];
+  }
+</script>
+</head>
+<body>
+<center>
+<h1><b>TYPES OF EVENTS</b></h1>
+</center>
+<figure>
+  <div class="row">
+    <div class="column" onclick="showSubImages(0)">
+      <img src="concert1.jpg" alt="Concert" class="mainImage">
+      <figcaption><center>Concert</center></figcaption>
+    </div>
+    <div class="column" onclick="showSubImages(1)">
+      <img src="wedding.jpg" alt="Wedding" class="mainImage">
+      <figcaption><center>Wedding</center></figcaption>
+    </div>
+    <div class="column" onclick="showSubImages(2)">
+      <img src="birthday.jpg" alt="Birthday" class="mainImage">
+      <figcaption><center>Birthday</center></figcaption>
+    </div>
+    <div class="column" onclick="showSubImages(3)">
+      <img src="conference1.jpg" alt="Conference" class="mainImage">
+      <figcaption><center>Conference</center></figcaption>
+    </div>
+  </div>
+</figure>
+<div class="subImagesContainer" id="subImageContainer"></div>
+</body>
+</html>

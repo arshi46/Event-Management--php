@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* Your CSS styles here */
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('feedback.png');
+    background-size: cover;
+    font-family: cursive;
+  }
+  .container {
+    max-width: 350px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color:white;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color:white;
+  }
+  input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  select {
+    height: 36px;
+  }
+  .radio-group {
+    display: flex;
+    align-items: center;
+    color:white;
+  }
+  .radio-group label {
+    margin-right: 15px;
+  }
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  p {
+    margin: 0;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  label {
+    margin-right: 10px;
+  }
+  input[type="radio"] {
+    margin-right: 1px;
+  }
+</style>
+<title>Feedback Form</title>
+</head>
+<body>
+<div class="container">
+  <h2>Feedback</h2>
+  <form method="post" action="feed.php">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+   <div class="form-group">
+      <label for="eventType">Event Type</label>
+      <select id="eventType" name="eventType" required>
+        <option value="Concert">Select an event type</option>
+        <option value="Wedding">Concert</option>
+        <option value="Conference">Conference</option>
+        <option value="Birthday">Birthday</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="venue">Venue</label>
+      <select id="venue" name="venue" required>
+        <option value="" disabled selected>Select a venue</option>
+        <option value="indoor">Indoor</option>
+        <option value="Garden">Garden</option>
+        <option value="Hall">Hall</option>
+        <option value="Banquet">Banquet</option>
+        <option value="Neon">Neon</option>
+        <option value="Aesthetic">Aesthetic</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="">How do you rate your overall experience:</label><br>
+      <div class="radio-group">
+        <input type="radio" name="experience" value="Good"/>Good
+        <input type="radio" name="experience" value="Bad"/>Bad
+        <input type="radio" name="experience" value="Average"/>Average
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+    </div>
+    <button id="submitButton" type="submit">Submit</button>
+  </form>
+</div>
+</body>
+</html>

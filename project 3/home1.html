@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: cursive;
+             background-image:url('homepage.jpg');
+            
+            background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+        }
+
+        header {
+            background-color: orange;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            position: relative;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            background-color: #444;
+        }
+
+        /* Style for the select bar */
+        select {
+            border: none;
+            background-color: #333;
+            color: white;
+	    font-family: cursive;
+            padding: 10px 20px;
+            cursor: pointer;
+	    
+        }
+
+        /* Container for page content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Styles for signup and login buttons */
+        .signup-login-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .signup-login-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Style for the signup/login box */
+        .signup-login-box {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            width: 30%;
+            margin: 0 auto;
+            text-align: left;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+        }
+
+        .signup-login-box label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .signup-login-box input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style for the login link */
+        .login-link {
+            color: blue;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Event Management System</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <select onchange="location = this.value;">
+            <option value="#">Events</option>
+            <option value="Event.html">Event Types</option>
+            <option value="Etype.html">Event Details</option>
+        </select>
+        <a href="register.html">Registration</a>
+        <a href="ticket.html">Ticket</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="about us.html">About Us</a>
+    </nav>
+    <div class="container">
+        <div class="signup-login-buttons">
+            <button id="signupButton">Sign Up</button>
+            <button id="loginButton">Login</button>
+        </div>
+    
+    <div class="signup-login-box" id="signupBox">
+        <h2>Sign Up</h2>
+        <form action="up.php" method="post" onsubmit="return validateSignUpForm()">
+            <label for="fname">First Name</label>
+    <input type="text" id="fname" name="fname" required>
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lname" required>
+
+    <label for="email">Email ID</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="repassword">Re-enter Password</label>
+    <input type="password" id="repassword" name="repassword" required>
+
+            <button type="submit">Sign Up</button><br>
+            <p>If you have an account, <span class="login-link" onclick="showLoginBox()">login</span>.</p>
+        </form>
+    </div>
+
+    <div class="signup-login-box" id="loginBox">
+        <h2>Login</h2>
+        <form action="login.php" method="post" onsubmit="return validateLoginForm()">
+            <label for="loginEmail">Email ID</label>
+            <input type="email" id="loginEmail" name="email" required>
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" required>
+
+            <button type="submit">Login</button>
+            <p>Don't have an account? <span class="login-link" onclick="showSignUpBox()">Sign up</span>.</p>
+        </form>
+    </div>
+    <script>
+        const signUpButton = document.getElementById('signupButton');
+        const loginButton = document.getElementById('loginButton');
+        const signUpBox = document.getElementById('signupBox');
+        const loginBox = document.getElementById('loginBox');
+
+        signUpButton.addEventListener('click', () => {
+            signUpBox.style.display = 'block';
+            loginBox.style.display = 'none';
+        });
+
+        loginButton.addEventListener('click', () => {
+            signUpBox.style.display = 'none';
+            loginBox.style.display = 'block';
+        });
+
+        function showLoginBox() {
+            signUpBox.style.display = 'none';
+            loginBox.style.display = 'block';
+        }
+
+        function showSignUpBox() {
+            signUpBox.style.display = 'block';
+            loginBox.style.display = 'none';
+        }
+
+        function validateSignUpForm() {
+            const firstName = document.getElementById('fname').value;
+            const lastName = document.getElementById('lname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const rePassword = document.getElementById('repassword').value;
+            
+            // Example: Check if all fields are filled
+            if (!firstName || !lastName || !email || !password || !rePassword) {
+                alert('Please fill in all fields.');
+                return false;
+            }
+
+            // Example: Validate email format
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            // Example: Validate password length
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return false;
+            }
+
+            // Example: Check if passwords match
+            if (password !== rePassword) {
+                alert('Passwords do not match.');
+                return false;
+            }
+
+            
+        }
+
+        function validateLoginForm() {
+            const loginEmail = document.getElementById('loginEmail').value;
+            const loginPassword = document.getElementById('loginPassword').value;
+
+            // Example: Check if login fields are filled
+            if (!loginEmail || !loginPassword) {
+                alert('Please fill in all login fields.');
+                return false;
+            }
+
+        
+        }
+
+        function isValidEmail(email) {
+            // Basic email format validation
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return emailPattern.test(email);
+        }
+    </script>
+    
+  
+</body>
+</html>

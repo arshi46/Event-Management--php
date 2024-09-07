@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: cursive;
+            background-image: url('e.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            color: rgb(65, 61, 61);
+        }
+
+        .container {
+            max-width: 350px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(214, 203, 203, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(134, 149, 151, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .small-button {
+            width: 20%;
+            padding: 5px;
+            background-color: silver;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .small-button-container {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function calculateCost() {
+            const eventType = document.getElementById("event").value;
+            const venue = document.getElementById("venue").value;
+            let cost = 0;
+
+            if (eventType === "concert") {
+                if (venue === "hall") cost = 30000;
+                else if (venue === "classical") cost = 45000;
+                else if (venue === "aesthetic") cost = 40000;
+                else if (venue === "neon") cost = 30000;
+            } else if (eventType === "wedding") {
+                if (venue === "garden") cost = 30000;
+                else if (venue === "indoor") cost = 45000;
+                else if (venue === "banquet") cost = 40000;
+            } else if (eventType === "birthday") {
+                if (venue === "garden") cost = 30000;
+                else if (venue === "indoor") cost = 45000;
+                else if (venue === "banquet") cost = 40000;
+            } else if (eventType === "conference") {
+                if (venue === "indoor") cost = 45000;
+                else if (venue === "banquet") cost = 40000;
+            }
+
+            document.getElementById("cost").value = cost.toLocaleString();
+        }
+
+        function validateForm() {
+            const nameInput = document.getElementById("name");
+            const name = nameInput.value.trim();
+            const namePattern = /^[A-Z][a-z]{2,}$/;
+
+            if (!namePattern.test(name)) {
+                alert("Name must start with a capital letter and be at least 3 characters.");
+                nameInput.focus();
+                return false;
+            }
+
+            const email = document.getElementById("email").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const event = document.getElementById("event").value;
+            const venue = document.getElementById("venue").value;
+            const date = document.getElementById("date").value;
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
+
+            if (!name || !email || !address || event === "" || venue === "" || !date) {
+                alert("Please fill in all required fields.");
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (address.length < 10) {
+                alert("Address must be at least 10 characters.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function redirectToTicketPage() {
+            if (validateForm()) {
+                window.location.href = "t.html";
+            }
+        }
+
+        function redirectToEvent1() {
+            window.location.href = "Event1.html";
+        }
+
+        function redirectToEd() {
+            window.location.href = "Ed.html";
+        }
+
+        function updateVenueOptions() {
+            const eventType = document.getElementById("event").value;
+            const venueSelect = document.getElementById("venue");
+
+            venueSelect.innerHTML = "";
+
+            const venues = {
+                concert: ["hall", "classical", "aesthetic", "neon"],
+                wedding: ["garden", "indoor", "banquet"],
+                birthday: ["garden", "indoor", "banquet"],
+                conference: ["indoor", "banquet"]
+            };
+
+            venues[eventType].forEach(venue => {
+                const option = document.createElement("option");
+                option.value = venue;
+                option.textContent = venue.charAt(0).toUpperCase() + venue.slice(1);
+                venueSelect.appendChild(option);
+            });
+
+            calculateCost();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Registration</h1>
+    <form action="register.php" method="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="address">Address</label>
+        <textarea id="address" name="address" required></textarea>
+        <div class="small-button-container">
+            <button class="small-button" type="button" onclick="redirectToEvent1()">Et</button>
+            <button class="small-button" type="button" onclick="redirectToEd()">Ed</button>
+        </div>
+        <label for="event">Event Type</label>
+        <select id="event" name="event" onchange="updateVenueOptions()" required>
+            <option value="" disabled selected>Select an event type</option>
+            <option value="concert">Concert</option>
+            <option value="wedding">Wedding</option>
+            <option value="birthday">Birthday</option>
+            <option value="conference">Conference</option>
+        </select>
+        <label for="venue">Venue</label>
+        <select id="venue" name="venue" onchange="calculateCost()" required>
+                <option value="" disabled selected>Select a venue</option>
+              </select>
+              
+              <label for="cost">Cost</label>
+              <input type="text" id="cost" name="cost" readonly>
+              
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required><br><br>
+              
+              <button type="submit">REGISTER</button><br>
+              <input type="button" value="Back!" onclick="history.back()">
+            </form>
+          </div>
+          </body>
+          </html>
+          
